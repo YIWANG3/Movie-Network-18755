@@ -36,3 +36,24 @@ DELETE r
 MATCH (n)
 DETACH DELETE n
 ```
+
+### Fuzzy Query
+```
+MATCH (n)
+WHERE n.genres =~ '(?i).*Sci-Fi.*'
+RETURN n
+```
+
+### Collect SciFi Only movies
+```
+MATCH x = (p:Person)-[r:ACT_IN|:DIRECT]->(m:SciFi)
+WITH collect(x) AS ps
+call apoc.gephi.add('http://localhost:8080','workspace1', ps) yield nodes, relationships, time
+return nodes, relationships, time
+```
+
+
+### Only Choose 1 degree
+```
+MATCH (p:Person)-[r:ACT_IN|:DIRECT*1..2]-(m:StarWarsWorld) SET p:StarWarsWorld
+```
