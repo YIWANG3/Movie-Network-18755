@@ -41,15 +41,15 @@ def filter_data(raw_data, filter_func):
 
 
 def movie_filter_func(x):
-    return x["titleType"] == "movie" and x["startYear"] != "\\N" and int(x["startYear"]) >= 1950 and x[
-        "directors"] != "\\N" and int(x["numVotes"]) >= 20000
+    return x["titleType"] == "movie" and x["startYear"] != "\\N" and int(x["startYear"]) >= 1960 and x[
+        "directors"] != "\\N" and int(x["numVotes"]) >= 4171
 
 
 def people_filter_func(x):
     return x["tconst"] in filtered_movie_set and x["category"] in ["actress", "actor", "director"]
 
 
-EXPORT_DATA_FOLDER = "../Data_V1"
+EXPORT_DATA_FOLDER = "../Data_V2"
 
 # Filter movie data
 movie_data = load_csv("../RawData/movie_data.csv")

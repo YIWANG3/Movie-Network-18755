@@ -1,0 +1,52 @@
+Top 10 Degree
+              nconst  degree
+0       Nicolas Cage     282
+1     Robert De Niro     267
+2  Samuel L. Jackson     252
+3       Bruce Willis     245
+4      Michael Caine     206
+5       Dennis Quaid     205
+6        John Cusack     203
+7     Morgan Freeman     199
+8     Clint Eastwood     194
+9       Willem Dafoe     190
+
+Top 10 Degree Centrality
+                  names      values
+1630       Nicolas Cage     0.01098
+111      Robert De Niro    0.010396
+2382  Samuel L. Jackson  0.00981194
+766        Bruce Willis  0.00953938
+844       Michael Caine  0.00802087
+2953       Dennis Quaid  0.00798193
+763         John Cusack  0.00790406
+1154     Morgan Freeman  0.00774832
+171      Clint Eastwood  0.00755363
+1665       Willem Dafoe  0.00739789
+
+Top 10 Eigenvector centrality
+                  names     values
+111      Robert De Niro   0.146816
+2382  Samuel L. Jackson  0.0971006
+766        Bruce Willis  0.0964815
+1154     Morgan Freeman   0.094389
+1238         Matt Damon  0.0925746
+1880     Julianne Moore  0.0906462
+412     Anthony Hopkins  0.0904662
+1630       Nicolas Cage  0.0890628
+692       Julia Roberts  0.0858464
+1230     George Clooney  0.0847585
+
+Top 10 Betweenness centrality
+                        names      values
+4262              Irrfan Khan   0.0190439
+419              Ben Kingsley   0.0130767
+1630             Nicolas Cage   0.0125035
+3862   Aishwarya Rai Bachchan   0.0111141
+11680             Anupam Kher   0.0106687
+1890              Liam Neeson  0.00955369
+1388            Penélope Cruz  0.00943861
+1884         Juliette Binoche   0.0093084
+111            Robert De Niro  0.00929132
+5487                  Om Puri  0.00916229
+

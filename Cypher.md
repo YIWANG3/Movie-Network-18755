@@ -57,3 +57,19 @@ return nodes, relationships, time
 ```
 MATCH (p:Person)-[r:ACT_IN|:DIRECT*1..2]-(m:StarWarsWorld) SET p:StarWarsWorld
 ```
+
+
+### Set birthYear to Int
+```
+MATCH (n:Person) SET n.birthYear = toInt(n.birthYear) RETURN count(n)
+```
+
+
+### Collect Collaboration Network only 70s 
+```
+MATCH p=(n:_70S)-[:COLLABORATE]->(m:_70S)
+WITH p
+WITH collect(p) AS ps
+call apoc.gephi.add('http://localhost:8080','workspace1', ps) yield nodes, relationships, time
+return nodes, relationships, time
+```
