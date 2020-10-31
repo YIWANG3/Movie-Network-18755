@@ -73,3 +73,30 @@ WITH collect(p) AS ps
 call apoc.gephi.add('http://localhost:8080','workspace1', ps) yield nodes, relationships, time
 return nodes, relationships, time
 ```
+
+
+### Collect movies with at least 3 shared nodes
+```
+MATCH (a:Movie)<-[r1:ACT_IN|:DIRECT]-(p:Person)-[r2:ACT_IN|:DIRECT]->(b:Movie) 
+WITH a,b,count(p) as rel_cnt 
+WHERE rel_cnt > 3 
+return a,b limit 10
+```
+
+Add Extra Relationship
+```
+MATCH (a:Movie)<-[r1:ACT_IN|:DIRECT]-(p:Person)-[r2:ACT_IN|:DIRECT]->(b:Movie) 
+WITH a,b,count(p) as rel_cnt 
+WHERE rel_cnt > 1 
+CREATE UNIQUE (a)-[r3:CLOSE_MOVIES]->(b),(b)-[r4:CLOSE_MOVIES]->(a)
+RETURN count(r3)
+```
+
+Transfer to gephi
+```
+MATCH p=(n:Movie)-[r:CLOSE_MOVIES]->(m:Movie)
+WITH p
+WITH collect(p) AS ps
+call apoc.gephi.add('http://localhost:8080','workspace1', ps) yield nodes, relationships, time
+return nodes, relationships, time
+```
