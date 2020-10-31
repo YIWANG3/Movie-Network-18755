@@ -23,6 +23,9 @@ df = df.groupby(["source", "target"]).size().reset_index(name="freq")
 
 df1 = pd.merge(df, names, how='left', left_on='source', right_on='nconst')
 df1 = pd.merge(df1, names, how='left', left_on='target', right_on='nconst')
+
+print(df1)
+
 df1 = df1[['primaryName_x', 'primaryName_y', 'freq']]
 df1.columns = ['source', 'target', 'freq']
 
