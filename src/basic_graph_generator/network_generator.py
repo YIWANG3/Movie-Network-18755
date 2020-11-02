@@ -1,4 +1,17 @@
 import pandas as pd
+import itertools
+import csv
+
+
+def edge_to_csv(filename,data):
+    header = ["Source","Target"]
+
+    with open(filename,'w') as csvfile:
+        csvwriter = csv.writer(csvfile, delimiter = ';')
+        #write head 
+        csvwriter.writerow(header)
+        #write edges
+        csvwriter.writerows(data)
 
 
 raw_movie_data = pd.read_csv("../../Data_V1/movie_data.csv")
@@ -22,12 +35,31 @@ nodes_actors = nodes_actors[["Id","Label"]]
 nodes =[nodes_movie,nodes_actors]
 res = pd.concat(nodes)
 
-res.to_csv('./graph_nodes.csv', index = False)
+
 
 #generate edges
 
 edges = raw_actors_data[["tconst","nconst"]]
 
+#movie in order
+cur_movie = raw_actors_data["tconst"][0]
+edges_actors = []
+edges_a = []
+
+for idx in raw_actors_data.index:
+    if raw_actors_data["tconst"][idx] == cur_movie:
+        edges_actors.append(raw_actors_data["nconst"][idx])
+    else:
+        if len(edges_actors) > 1:
+            for edge in itertools.combinations(edges_actors,2):
+                edges_a.append(edge)
+        edges_actors.clear()
+        edges_actors.append(raw_actors_data["nconst"][idx])
+        cur_movie = raw_actors_data["tconst"][idx]
+
 edges.rename({'tconst':'Source', 'nconst':'Target'}, axis='columns',inplace=True)
 
+edge_to_csv('actor_edge.csv',edges_a)
+nodes_actors.to_csv('./actor_nodes.csv',index = False)
 edges.to_csv('./graph_edges.csv', index = False)
+res.to_csv('./graph_nodes.csv', index = False)

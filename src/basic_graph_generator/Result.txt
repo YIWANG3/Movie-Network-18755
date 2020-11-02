@@ -1,0 +1,14 @@
+-----Movie Actors graph
+Nodes that its degree bigger than 40:
+All actors: 
+nm0000095 - 44 Woody Allen 1935
+nm0000158 - 44 Tom Hanks 1956
+nm0000142 - 48 Clint Eastwood 1930
+nm0000115 - 48 Nicolas Cage 1964
+nm0000246 - 48 Bruce Willis 1955
+nm0000168 - 48 Samuel L. Jackson 1948
+nm0000134 - 64 Robert De Niro 1943
+
+-----Actors Actors graph if they take part in the same movie
+
+
