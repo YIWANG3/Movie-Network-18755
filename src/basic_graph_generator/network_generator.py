@@ -7,7 +7,7 @@ def edge_to_csv(filename,data):
     header = ["Source","Target"]
 
     with open(filename,'w') as csvfile:
-        csvwriter = csv.writer(csvfile, delimiter = ';')
+        csvwriter = csv.writer(csvfile, delimiter = ',')
         #write head 
         csvwriter.writerow(header)
         #write edges
@@ -20,7 +20,7 @@ raw_actors_data = pd.read_csv("../../Data_V1/people_with_relation.csv")
 #generate all nodes
 nodes_movie = raw_movie_data.drop_duplicates(subset=['tconst'])
 nodes_movie["Label"] = "movie"
-
+nodes_directors = raw_movie_data['directors'].drop_duplicates()
 
 nodes_movie = nodes_movie.rename({'tconst':'Id'},axis='columns')
 
@@ -32,9 +32,6 @@ nodes_actors["Label"] = "actor"
 
 nodes_actors.rename({'nconst':'Id'},axis='columns',inplace=True)
 nodes_actors = nodes_actors[["Id","Label"]]
-nodes =[nodes_movie,nodes_actors]
-res = pd.concat(nodes)
-
 
 
 #generate edges
@@ -47,6 +44,8 @@ edges_actors = []
 edges_a = []
 
 for idx in raw_actors_data.index:
+    if raw_actors_data['nconst'][idx] in nodes_directors.values:
+        nodes_actors.loc[nodes_actors['Id'] == raw_actors_data['nconst'][idx],'Label'] = "director"
     if raw_actors_data["tconst"][idx] == cur_movie:
         edges_actors.append(raw_actors_data["nconst"][idx])
     else:
@@ -58,6 +57,9 @@ for idx in raw_actors_data.index:
         cur_movie = raw_actors_data["tconst"][idx]
 
 edges.rename({'tconst':'Source', 'nconst':'Target'}, axis='columns',inplace=True)
+nodes =[nodes_movie,nodes_actors]
+res = pd.concat(nodes)
+
 
 edge_to_csv('actor_edge.csv',edges_a)
 nodes_actors.to_csv('./actor_nodes.csv',index = False)
