@@ -28,15 +28,14 @@ nodes_movie = nodes_movie[["Id","Label"]]
 
 
 nodes_actors = raw_actors_data.drop_duplicates(subset=['nconst'])
-nodes_actors["Label"] = "actor"
 
-nodes_actors.rename({'nconst':'Id'},axis='columns',inplace=True)
+nodes_actors.rename({'nconst':'Id','primaryName':'Label'},axis='columns',inplace=True)
 nodes_actors = nodes_actors[["Id","Label"]]
 
 
 #generate edges
 
-edges = raw_actors_data[["tconst","nconst"]]
+edges = raw_actors_data[["tconst","nconst","averageRating"]]
 
 #movie in order
 cur_movie = raw_actors_data["tconst"][0]
@@ -44,8 +43,8 @@ edges_actors = []
 edges_a = []
 
 for idx in raw_actors_data.index:
-    if raw_actors_data['nconst'][idx] in nodes_directors.values:
-        nodes_actors.loc[nodes_actors['Id'] == raw_actors_data['nconst'][idx],'Label'] = "director"
+    # if raw_actors_data['nconst'][idx] in nodes_directors.values:
+    #     nodes_actors.loc[nodes_actors['Id'] == raw_actors_data['nconst'][idx],'Label'] = "director"
     if raw_actors_data["tconst"][idx] == cur_movie:
         edges_actors.append(raw_actors_data["nconst"][idx])
     else:
@@ -56,7 +55,7 @@ for idx in raw_actors_data.index:
         edges_actors.append(raw_actors_data["nconst"][idx])
         cur_movie = raw_actors_data["tconst"][idx]
 
-edges.rename({'tconst':'Source', 'nconst':'Target'}, axis='columns',inplace=True)
+edges.rename({'tconst':'Source', 'nconst':'Target', 'averageRating' : 'Weight'}, axis='columns',inplace=True)
 nodes =[nodes_movie,nodes_actors]
 res = pd.concat(nodes)
 

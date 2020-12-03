@@ -1,6 +1,9 @@
 -----Movie Actors graph
-Nodes that its degree bigger than 40:
+Nodes that its degree is bigger than 40:
 All actors: 
+nm0000230 - 39 Sylvester Stallone,1946
+nm0000151 - 41 Morgan Freeman,1937
+nm0000136 - 43 Johnny Depp,1963
 nm0000095 - 44 Woody Allen 1935
 nm0000158 - 44 Tom Hanks 1956
 nm0000142 - 48 Clint Eastwood 1930
@@ -9,6 +12,30 @@ nm0000246 - 48 Bruce Willis 1955
 nm0000168 - 48 Samuel L. Jackson 1948
 nm0000134 - 64 Robert De Niro 1943
 
------Actors Actors graph if they take part in the same movie
+Betweenness centrality top10 from high to low
+nm0000134 - Robert De Niro 1943 'director'
+nm0000142 - Clint Eastwood 1930 'director'
+nm0451234 - Irrfan Khan,1967
+nm0000115 - Nicolas Cage 1964
+nm0000168 - Samuel L. Jackson 1948
+nm0000158 - Tom Hanks 1956 'director'
+nm0000125 - Sean Connery,1930
+nm0000621 - Kurt Russell,1951
+nm0000136 - Johnny Depp,1963
+nm0594503 - Hayao Miyazaki,1941 'director'
 
+-----Actors Actors graph if they take part in the same movie
+Nodes that its degree is bigger than 138
+nm0000154 - 136 Mel Gibson,1956 'director'
+nm0000173 - 139 Nicole Kidman,1967
+nm0000136 - 145 Johnny Depp,1963
+nm0000151 - 145 Morgan Freeman,1937
+nm0000142 - 150 'director' Clint Eastwood 1930
+nm0000158 - 156 'director/actor' Tom Hanks 1956
+nm0000168 - 180 Samuel L. Jackson 1948
+nm0000115 - 183 Nicolas Cage 1964
+nm0000246 - 183 Bruce Willis 1955
+nm0000134 - 212 'director' Robert De Niro 1943
+
+Giant Component occupies 92.69% of nodes in graph
 
