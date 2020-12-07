@@ -46,12 +46,13 @@ for edge_idx in edges_sorting.index:
 
 # add time interval to create dynamic graph
 nodes_movie["Time Interval"] = "?"
-
+num_nodes = [0,0,0,0,0,0,0,0]
 for node_idx in nodes_movie.index:
     range_key = (nodes_movie["startYear"][node_idx] - 1950) // 10
+    num_nodes[range_key] += 1
     nodes_movie["Time Interval"][node_idx] = "<[{},{})>".format(1950 + range_key * 10,1950+(range_key+1)*10)
 
-
+print(num_nodes)
 edge_to_csv('movie_edges.csv',edge_movies)
 nodes_movie.to_csv('./movie_nodes.csv',index = False)
 
